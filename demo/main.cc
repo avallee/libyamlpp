@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 
+#include "types.hh"
 using namespace std;
 
 template<typename T>
@@ -40,6 +41,8 @@ int main(int argc, char* argv[])
     v.push_back("b");
     v.push_back("c");
     cout << dump(v) << endl;
+
+    type_demo();
 
     return 0;
 }
