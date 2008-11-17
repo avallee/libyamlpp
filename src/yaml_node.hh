@@ -36,7 +36,11 @@ namespace yml{
         std::string type(){return "Sequence";}
         std::string dump();
 
+        void add(std::tr1::shared_ptr<Node> a);
+
         private:
+        typedef std::list< std::tr1::shared_ptr<Node> > value_t;
+        value_t values;
     };
 
     // TODO: Stub mapping class

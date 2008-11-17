@@ -1,4 +1,5 @@
 #include "yaml_node.hh"
+#include <sstream>
 
 using namespace std;
 namespace yml{
@@ -13,7 +14,7 @@ namespace yml{
 
     string Scalar::dump()
     {
-        return value;
+        return "\""+value+"\"";
     }
 
     //Sequence implementation
@@ -23,7 +24,26 @@ namespace yml{
 
     string Sequence::dump()
     {
-        return "Sequence unimplemented!";
+        ostringstream os;
+        bool first=true;
+        os << "[";
+        for(value_t::iterator i = values.begin(); i!=values.end(); ++i)
+        {
+            if(!first)
+            {
+                os<<", ";
+            }
+            os << (*i)->dump();
+            first=false;
+        }
+        os<< "]";
+
+        return os.str();
+
+    }
+    void Sequence::add(tr1::shared_ptr<Node> a)
+    {
+        values.push_back(a);
     }
 
     // Mapping implementation
